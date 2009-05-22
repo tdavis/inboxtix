@@ -18,6 +18,6 @@ class Signup(models.Model):
     email = models.EmailField(
         help_text="Now we just need your <strong>Email Address</strong>")
     frequency = models.CharField(max_length=1, choices=FREQUENCY_OPTS,
-        help_text="What is your desired <strong>contact interval</strong>?")
+        help_text="<strong>How often</strong> should we email you?")
     verified = models.BooleanField(default=False, editable=False)
     last_sent = models.DateField(auto_now_add=True)
