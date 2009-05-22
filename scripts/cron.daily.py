@@ -96,13 +96,13 @@ if __name__ == '__main__':
             kwargs['events'].append(e)
             count += 1
 
-    if total_count > settings.EVENTS_PER_EMAIL:
-        kwargs['count'] = total_count - settings.EVENTS_PER_EMAIL
-    subject = render_to_string('newsletter/ticket_subject.txt',
-        {'prefix': settings.EMAIL_PREFIX}).strip()
-    message = render_to_string('newsletter/ticket_email.txt', kwargs)
-    send_mail(subject, message, settings.EMAIL_HOST_USER, [nl.email])
+        if total_count > settings.EVENTS_PER_EMAIL:
+            kwargs['count'] = total_count - settings.EVENTS_PER_EMAIL
+        subject = render_to_string('newsletter/ticket_subject.txt',
+            {'prefix': settings.EMAIL_PREFIX}).strip()
+        message = render_to_string('newsletter/ticket_email.txt', kwargs)
+        send_mail(subject, message, settings.EMAIL_HOST_USER, [nl.email])
 
-    nl.last_sent = today
-    nl.save()
+        nl.last_sent = today
+        nl.save()
 
