@@ -1,13 +1,16 @@
 OVERVIEW
 
-Seats Tweets is a Twitter service which tweets current ticket prices to upcoming MLB, NBA, and NHL games (with more to come!)
+Inboxtix is a service which sends up-to-the-minute ticket pricing for your
+favorite team, artist, or performer right to your inbox.
 
-It also serves as an example of what can be created using the TicketStumbler API. To that end, we've open-sourced this app so that those interested in building their own apps on top of TicketStumbler have an example to go by. For more information on the API, see: http://ticketstumbler.com/api/docs/
+It also serves as an example of what can be created using the TicketStumbler API.
+To that end, we've open-sourced this app so that those interested in building
+their own apps on top of TicketStumbler have an example to go by. For more
+information on the API, see: http://ticketstumbler.com/api/docs/
 
 All questions/comments may be directed to api [at] ticketstumbler [dot] com
 
 REQUIREMENTS
 
-Django (http://djangoproject.com)
--- Tested on trunk, though should work properly with 1.x release.
-
+Django (1.0 or later) (http://djangoproject.com)
+lxml (http://codespeak.net/lxml/)
