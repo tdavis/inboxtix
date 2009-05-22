@@ -1,0 +1,13 @@
+Hey there!
+
+Thanks for signing up for ticket alerts from inboxtix! As we mention on the
+site, your first signup must be verified to reduce instances of abuse. To
+verify your address, simply click on the link below, or paste the URL into
+your browser's address bar and hit 'Enter':
+
+{{ verify_url }}
+
+
+Thanks,
+
+Happy Inboxtix Mailing Robot

@@ -1,0 +1,159 @@
+/* @override http://127.0.0.1:8000/site_media/css/master.css */
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Geneva, sans-serif;
+}
+
+strong {
+	font-weight: bold;
+}
+
+em {
+	font-style: italic;
+}
+
+.first em {
+	line-height: 1.4;
+	display: block;
+}
+
+a {
+	color: #b10000;
+	font-weight: bold;
+}
+
+.success, .failure {
+	padding: .6em;
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.success {
+	background-color: #73fc44;
+}
+
+.failure {
+	background-color: #fb7876;
+}
+
+#logo {
+	position: relative;
+	top: 10px;
+}
+
+#callout {
+	height: 90px;
+	background-color: #b10000;
+	text-align: center;
+}
+
+#callout img {
+	position: relative;
+	top: 20px;
+}
+
+#signup-form {
+	position: relative;
+	background-color: #373737;
+	height: 160px;
+}
+
+#signup-form input,
+#signup-form select {
+    margin: .5em;
+    padding: .2em;
+	font: 1.3em "Lucida Grande", Lucida, Verdana, sans-serif;
+    border: 2px solid #ccc;
+}
+
+#submit input {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+#signup-form .required {
+    border: 2px solid #b10000;
+}
+
+#id_category_id {
+	width: 350px;
+}
+
+#signup-form #id_min_price,
+#signup-form #id_max_price {
+	width: 70px;
+	background: #fff url(../img/money_dollar.png) no-repeat left;
+	padding-left: 15px;
+}
+
+#qtip-pad {
+	padding-top: 55px;
+}
+
+
+#signup-form #submit {
+	position: absolute;
+	right: 6px;
+	bottom: 0;
+    border: none;
+}
+
+#signup-form p {
+	text-align: center;
+	font-size: 1.3em;
+	color: #f2f2f2;
+	position: relative;
+	top: 15px;
+}
+
+#signup-form p img {
+	margin-right: 5px;
+	position: relative;
+	top: 2px;	
+}
+
+#bd {
+	text-align: center;
+}
+
+.yui-u {
+	margin: 0;
+	padding: 1em 0;
+}
+
+.first p {
+	margin-left: -1em;
+}
+
+.last p {
+	margin-right: -1em;
+}
+
+#bd p {
+	text-align: justify;
+	padding: 1em;
+	font-size: 1em;
+	line-height: 1.8;
+}
+
+#bd .center {
+	background-color: #f2f2f2;
+	padding-bottom: 11em;
+}
+
+#ft {
+	background-color: #b10000;
+	padding: 1em;
+	color: #efefef;
+	text-align: center;
+	font-weight: 200;
+	font-size: .9em;
+	line-height: 1;
+}
+
+.qtip {
+	text-align: center;
+	font-size: .85em;
+}

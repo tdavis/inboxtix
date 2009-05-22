@@ -1,0 +1,24 @@
+Hey there, here is your {{ frequency }} ticket report from inboxtix.com!
+(powered by TicketStumbler.com)
+
+Over the next {{ range }}, we found the following {{ category_name }} events:
+
+{% for e in events %}
+=======================================
+{{ e.name }}
+=======================================
+{{ e.venue_string }}
+
+Ticket Snapshot
+(prices from ${{ e.min_price }} to ${{ e.max_price }})
+{{ e.tickets }}
+Link: {{ e.url }}
+
+{% endfor %}
+{% if count %}There are {{ count }} more events available, so be sure to visit the link below
+to see more!
+{% endif %}
+To see more events, more tickets, venue maps and more, visit this link:
+
+http://ticketstumbler.com/{{ category_slug }}/
+    

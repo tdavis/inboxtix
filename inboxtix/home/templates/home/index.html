@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>
+		Real-time ticket pricing, right to your inbox. For free. - inboxtix.com
+	</title>
+    <link rel="stylesheet" 
+        href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css"
+        type="text/css">
+	<link rel="stylesheet" href="{{ MEDIA_URL }}/css/master.css" type="text/css"
+		media="screen" charset="utf-8">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}/css/jquery.autocomplete.css"
+        media="screen" charset="utf-8">
+</head>
+<body>	
+	<div id="doc" class="yui-t7">
+		<div id="hd" role="application">
+			<img id="logo" src="{{ MEDIA_URL }}/img/logo.png" alt="inbox tix!">
+			<div id="callout">
+				<img src="{{ MEDIA_URL }}/img/callout.png"
+				alt="Real-time ticket pricing, right to your inbox. For free.">
+			</div>
+			<div id="signup-form">
+				<form action="/newsletter/signup/" method="post" accept-charset="utf-8">
+                    {{ form.category_id }} {{ form.frequency }}
+                    {{ form.min_price }} {{ form.max_price }}
+                    <div id="qtip-pad">
+                        {{ form.email }}
+                    </div>
+                     
+					<div id="submit">
+					    <input type="image" 
+					    src="{{ MEDIA_URL }}/img/signup-button.png">
+					</div>
+				</form>
+			</div>
+			<div id="verified"></div>
+		</div>
+	   	<div id="bd" role="main">
+			<div class="yui-gb">
+			    <div role="contentinfo" class="yui-u first">
+		            <img src="{{ MEDIA_URL }}/img/h-how.png" alt="how it works">
+		            <p>
+		                As often as you specify, we send you
+                        up-to-the-minute ticket pricing for your
+                        favorite games, artists, and 
+                        performances, right to your inbox. 
+                        Included in the e-mail are rough price 
+                        ranges (minimum and maximum)
+                        as well as the top 10 cheapest tickets
+                        we know about. If you want to see the
+                        entire selection, just follow the
+                        provided link.
+                    </p>
+                    <p>
+					<em>
+						Note: Ticket pricing represents availability on the
+						secondary market, not primary sellers such as 
+						TicketMaster.
+					</em>
+                    </p>
+		        </div>
+	            <div role="contentinfo" class="yui-u center">
+		            <img src="{{ MEDIA_URL }}/img/h-after.png" alt="after you sign up">
+		            <p>
+		                After signing up the first time, check your inbox.
+		            </p>
+		            <p>
+		                Waiting for you will be a verification
+                        link. We require you verify the first
+                        sign-up you make so we don’t end
+                        up spamming anybody. Any further
+                        sign-ups you create on the same
+                        computer will not require verification.
+                    </p>
+		        </div>
+	            <div role="contentinfo" class="yui-u last">
+		            <img src="{{ MEDIA_URL }}/img/h-steal.png" alt="steal this app!">
+		            <p>
+                        <em>Inboxtix</em> is not only a useful service! 
+                        It also serves as an example of what can
+						be created using the
+						<a href="http://ticketstumbler.com">TicketStumbler</a>
+						<a href="http://ticketstumbler.com/api/docs/">API</a>.
+						To that end, we've open-sourced this app so that those
+						interested in building their own apps on top of 
+                        TicketStumbler have an example to go by. Go grab it on
+                        <a href="http://github.com/nydusmedia/inboxtix/tree/master">
+                        github</a>!
+                    </p>
+                    <p>
+                        If you end up building something cool,
+						be sure to 
+                        <a href="mailto:api@ticketstumbler.com?subject=I Made Something Cool!">
+						let us know</a>!
+                    </p>
+		        </div>
+	        </div>
+	    </div>
+	<div id="ft" role="contentinfo">
+	    <p>
+	        design and graphics &copy;2009 by Ticket Stumbler Inc. // all other
+	        source available under an MIT license
+	    </p>
+	</div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"
+	type="text/javascript" charset="utf-8"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"
+    type="text/javascript" charset="utf-8"></script>
+<script src="{{ MEDIA_URL }}/js/jquery.autocomplete.min.js"
+    type="text/javascript" charset="utf-8"></script>
+<script src="{{ MEDIA_URL }}/js/jquery.qtip-1.0.0-rc3.min.js"
+    type="text/javascript" charset="utf-8"></script>
+<script src="{{ MEDIA_URL }}/js/jquery.form.js"
+    type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+		var MEDIA_URL = '{{ MEDIA_URL }}';
+
+		// Verification
+		if(window.location.search.search(/verified/) == 1) {
+			var verified = $('#verified');
+			if(window.location.search.search(/False/) == -1) {
+				verified.addClass('success');
+				verified.html('Verification was successful, thank you!');
+			} else {
+				verified.addClass('failure');
+				verified.html(
+					'Verification failed! Please make sure you followed the correct url!'
+				);
+			}
+			setTimeout('$("#verified").slideUp("slow");', 6000);
+		}
+
+		// Default tooltip settings
+        qtipConfigVertical = {
+            show: { 
+                ready: true, 
+                when: { event: 'blur' }
+            },
+            hide: { when: { event: 'focus' } },
+            style: { 
+                name: 'cream',
+                tip:  {
+                    corner: 'topMiddle',
+                    size: { x:12, y:6 }
+                },
+                width: { min: 360, max: 360 }
+            },
+            position: {
+                corner: {
+                    tooltip: 'topMiddle',
+                    target: 'bottomMiddle'
+                },
+                adjust: {
+                    x: 0,
+                    y: 2
+                }
+            }
+        }
+
+		// Tooltip settings for Email field (horizontal)
+        qtipConfigHorizontal = $.extend(true, {}, qtipConfigVertical);
+        qtipConfigHorizontal['style']['width'] = { min: 230, max: 230 };
+        qtipConfigHorizontal['position']['adjust']['y'] = 0;
+        qtipConfigHorizontal['position']['adjust']['x'] = 2;
+        qtipConfigHorizontal['position']['corner'] = { 
+            tooltip: 'leftMiddle',
+            target: 'rightMiddle'
+        };
+        qtipConfigHorizontal['style']['tip']['size'] = { x:6, y:12 }
+        qtipConfigHorizontal['style']['tip']['corner'] = 'leftMiddle';
+
+        // Autocomplete
+        $("#id_category_id").autocomplete("/get_categories/", {
+            minChars: 3,
+            width: 358,
+            cacheLength: 10,
+		});
+
+		// Form submission animations
+		var beforeSubmit = function(data, obj, opts) {
+			$('.qtip').remove();
+			container = $('#signup-form');
+			obj.hide();
+			container.append(
+				'<p id="status"><img src="'+MEDIA_URL+'/img/indicator2.gif">Submitting...</p>'
+			);
+			container.animate({height:'50px'}, 500, function() {
+			});
+		};
+
+		var success = function(data, obj, opts) {
+			var container = $('#signup-form');
+			var timeout = 5;
+			var errors = false;
+			$('#status').remove();
+			if (data == '') {
+				var msg = '<p id="status"><img src="{{ MEDIA_URL }}/img/accept.png" \
+				alt="success">Sign-up complete!</p>';
+				container.prepend(msg);
+			} else if(data == 'verify') { 
+				var msg = '<p id="status"><img src="{{ MEDIA_URL }}/img/exclamation.png" \
+				alt="reminder">Almost done: remember to verify your account!</p>';
+				container.prepend(msg);
+			} else {
+				timeout = 0;
+				errors = Array();
+				var arr = data.split('\n');
+				for(var x=0; x<arr.length; x++) {
+					var arr2 = arr[x].split('::');
+					var err = $(arr2[1]);
+					errors[arr2[0]] = err;
+				}
+			}
+			var reset = function() {
+				$('#status').remove();
+				container.animate({ height: '160px' }, 500, function() {
+					$('#signup-form form').show();
+					generateQtips(errors);
+				});
+			};
+			setTimeout(reset, timeout*1000);
+		};
+
+		// Ajaxify!
+		$('#signup-form form').ajaxForm({
+			beforeSubmit: beforeSubmit,
+			success: success
+		});
+
+		// Actual tooltip generation
+        var generateQtips = function(err) {
+            {% for f in form %}
+                {% ifequal f.name "email" %}
+                    qtipConfig = $.extend({}, qtipConfigHorizontal);
+                {% else %}
+                    qtipConfig = $.extend({}, qtipConfigVertical);
+                    qtipConfig['style']['width'] = { min: 104, max: 104 };
+                {% endifequal %}
+                {% ifequal f.name "category_id" %}
+                    qtipConfig['style']['width'] = { min: 360, max: 360 };
+                {% endifequal %}
+                {% ifequal f.name "frequency" %}
+                    qtipConfig['style']['width'] = { min: 130, max: 130 };
+                    qtipConfig['position']['adjust']['y'] = 1;
+                {% endifequal %}
+				if (err && err['{{ f.name }}']) {
+					qtipConfig['content'] = err['{{ f.name }}'];
+					qtipConfig['style']['name'] = 'red'; 
+				} else {
+					qtipConfig['style']['name'] = 'cream'; 
+					qtipConfig['content'] = "{{ f.help_text|safe }}";
+				}
+                $("#id_{{ f.name }}").qtip(qtipConfig);
+            {% endfor %}
+        };
+
+		// Do eet now!
+        generateQtips();
+    });
+</script>
+</body>
+</html>
