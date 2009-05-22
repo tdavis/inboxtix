@@ -15,7 +15,7 @@ from inboxtix.newsletter.models import Signup
 if __name__ == '__main__':
     ticket_table_labels = ('Price (ea)', 'Section', 'Qty')
     today = date.today()
-    todo = Signup.objects.filter(last_sent__lt=today)
+    todo = Signup.objects.filter(last_sent__lt=today, verified=True)
     for nl in todo:
         if (nl.frequency == 'w' and nl.last_sent > today - timedelta(days=7) or
             nl.frequency == 'b' and nl.last_sent > today - timedelta(days=14)):

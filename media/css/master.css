@@ -83,7 +83,7 @@ a {
 
 #signup-form #id_min_price,
 #signup-form #id_max_price {
-	width: 70px;
+	width: 65px;
 	background: #fff url(../img/money_dollar.png) no-repeat left;
 	padding-left: 15px;
 }
@@ -151,6 +151,10 @@ a {
 	font-weight: 200;
 	font-size: .9em;
 	line-height: 1;
+}
+
+#ft a {
+    color: #efefef;
 }
 
 .qtip {
