@@ -46,14 +46,13 @@ if __name__ == '__main__':
         }
         count = 0
         total_count = 0
+        # Get category stuff here
+        catid = kwargs['category_id']
+        cattree = get_api_tree('category', 'by_id', **{ 'id': catid })
+        kwargs['category_name'] = cattree.find('name').text
+        kwargs['category_slug'] = cattree.find('slug').text
         for event in tree.iter('event'):
             total_count += 1
-            if count == 0:
-                # Get category stuff here
-                catid = event.find('category_id').text
-                cattree = get_api_tree('category', 'by_id', **{ 'id': catid })
-                kwargs['category_name'] = cattree.find('name').text
-                kwargs['category_slug'] = cattree.find('slug').text
             # Only show settings.EVENTS_PER_EMAIL events in the email; we still
             # want a total count, though.
             if count > settings.EVENTS_PER_EMAIL:
@@ -76,9 +75,9 @@ if __name__ == '__main__':
             if nl.max_price:
                 tkwargs['max_price'] = nl.max_price
             tixtree = get_api_tree('tickets', 'by_event', **tkwargs)
+            ticket_count = 0
             for t in tixtree.iter('ticketdict'):
                 ticket = []
-                ticket_count = 0
                 for label in ('price', 'section', 'quantity'):
                     ticket.append(t.find(label).text)
                 # Let's filter out parking and VIP junk
