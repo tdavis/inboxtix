@@ -1,1 +1,1 @@
-{ prefix } Fresh Ticket News!
+{{ prefix }} Fresh Ticket News!
