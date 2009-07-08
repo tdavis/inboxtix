@@ -39,11 +39,11 @@ if __name__ == '__main__':
             'date_end': wrange[1],
         }
         tree = get_api_tree('event', 'search', **kwargs)
-        kwargs = {
+        kwargs.update({
             'frequency': frequency,
             'range': trange,
             'events' : []
-        }
+        })
         count = 0
         total_count = 0
         # Get category stuff here
